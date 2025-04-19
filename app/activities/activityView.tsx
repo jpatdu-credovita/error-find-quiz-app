@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 
 import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
 import { RoundTitle } from "~/questions/roundTitle"
@@ -111,15 +111,17 @@ export function ActivityView({ activity }) {
     };
 
     return (
-        <motion.div
-            key={clickCount}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="flex h-screen w-screen"
-        >
-            {renderContent()}
-        </motion.div>
+        <AnimatePresence>
+            <motion.div
+                key={clickCount}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="flex h-screen w-screen"
+            >
+                {renderContent()}
+            </motion.div>
+        </AnimatePresence>
     )
 }

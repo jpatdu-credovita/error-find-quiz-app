@@ -3,13 +3,22 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --color-dodger-blue: oklch(67.025% 0.17475 249.86);
+  --color-dodger-blue-50: oklch(0.99 0.002854 264.5422);
+  --color-dodger-blue-100: oklch(0.98 0.0109 243.65);
+  --color-dodger-blue-200: oklch(84.006% 0.08223 244.53);
+  --color-dodger-blue-300: oklch(77.81% 0.11542 245.64);
+  --color-dodger-blue-400: oklch(72.278% 0.14707 247.11);
+  --color-dodger-blue-500: oklch(67.025% 0.17475 249.86);
+  --color-dodger-blue-600: oklch(58.998% 0.18052 253);
+  --color-dodger-blue-700: oklch(48.383% 0.14491 252.39);
+  --color-dodger-blue-800: oklch(37.149% 0.10699 251.19);
+  --color-dodger-blue-900: oklch(24.624% 0.06525 248.39);
+  --color-dodger-blue-950: oklch(18.035% 0.04257 244.95);
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  @apply bg-dodger-blue-100;
 }

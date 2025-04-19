@@ -1,4 +1,5 @@
 import React from "react"
+import {CustomMarkdown} from "~/utilityComponents/customMarkdown";
 
 enum activityRoundType {
     singleRound = "singleRound",
@@ -43,9 +44,12 @@ export const Results: React.FC<ResultsProps> = ({
                                     <span className="font-bold">{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
                                 </div>
                                 {!isUserAnswerCorrect ? (
-                                    <p className="text-sm mt-2">
-                                        "{stimulus}" {is_correct ? `is correct. There is no error.` : `should be "${feedback}"`}
-                                    </p>
+                                    <span className="text-sm mt-2">
+                                        "<CustomMarkdown>{stimulus}</CustomMarkdown>" {
+                                            is_correct ? `is correct. There is no error.`
+                                                : `should be "${<CustomMarkdown>{feedback}</CustomMarkdown>}"`
+                                        }
+                                    </span>
                                 ) : null}
                             </div>
                         ))}

@@ -1,3 +1,5 @@
+import { CustomMarkdown } from "~/utilityComponents/customMarkdown";
+
 interface trueOrFalseQuestionProps {
     question: any,
     activityName: string,
@@ -30,7 +32,7 @@ export const TrueOrFalseQuestion: React.FC<trueOrFalseQuestionProps> = ({
                 <h1 className="box-title">Q{order}.</h1>
             </div>
             <div className="box-ribbon">
-                <p>{stimulus}</p>
+                <p><CustomMarkdown>{stimulus}</CustomMarkdown></p>
             </div>
             <div className="box-footer">
                 <button onClick={() => handleInput(true)}>Correct</button>

@@ -18,14 +18,18 @@ export default function Index({
                               }: Route.ComponentProps) {
     const { quizData } = loaderData
     return (
-        <div>
-            <h6>CAE</h6>
-            <h1>{quizData.name}</h1>
-            {quizData.activities.map(({activity_name, order, idx}) => (
-                <div key={order}>
-                    <a href={`/activity/${order}`}>{activity_name}</a>
-                </div>
-            ))}
+        <div className="box-narrow">
+            <div className="box-header text-center">
+                <h6 className="box-superscript">CAE</h6>
+                <h1 className="box-title">{quizData.name}</h1>
+            </div>
+            <div className="box-list">
+                {quizData.activities.map(({activity_name, order, idx}) => (
+                    <div className="box-list-item text-center uppercase" key={order}>
+                        <a href={`/activity/${order}`}>{activity_name}</a>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

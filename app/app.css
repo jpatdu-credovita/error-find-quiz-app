@@ -7,7 +7,8 @@
   --color-dodger-blue: oklch(67.025% 0.17475 249.86);
   --color-dodger-blue-50: oklch(0.99 0.002854 264.5422);
   --color-dodger-blue-100: oklch(0.98 0.0109 243.65);
-  --color-dodger-blue-200: oklch(84.006% 0.08223 244.53);
+  --color-dodger-blue-150: oklch(0.96 0.0186 242.96);
+  --color-dodger-blue-200: oklch(0.91 0.0465 241.36);
   --color-dodger-blue-300: oklch(77.81% 0.11542 245.64);
   --color-dodger-blue-400: oklch(72.278% 0.14707 247.11);
   --color-dodger-blue-500: oklch(67.025% 0.17475 249.86);
@@ -21,4 +22,53 @@
 html,
 body {
   @apply bg-dodger-blue-100;
+  @apply text-dodger-blue;
+}
+
+.box-wide, .box-narrow {
+  @apply m-auto bg-white border border-dodger-blue-200;
+}
+
+.box-narrow {
+  @apply grow max-w-[230px];
+}
+
+.box-wide {
+  @apply grow max-w-[506px] min-h-[300px];
+}
+
+.box-header {
+  @apply p-10 min-h-[172px] flex flex-col justify-between;
+}
+
+.box-superscript {
+  @apply font-semibold uppercase;
+}
+
+.box-title {
+  @apply font-bold text-4xl;
+}
+
+.box-ribbon {
+  @apply p-4 bg-dodger-blue-50 border-y border-dodger-blue-200;
+}
+
+.box-list {
+  @apply border-t border-b border-dodger-blue-150 divide-y max-h-[200px] overflow-y-scroll;
+}
+
+.box-list-item {
+  @apply p-4 border-dodger-blue-150;
+}
+
+.box-ribbon {
+  @apply px-10 py-4;
+}
+
+.box-footer {
+  @apply py-8 uppercase font-bold flex justify-around;
+}
+
+button {
+  @apply uppercase cursor-pointer;
 }

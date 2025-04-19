@@ -1,3 +1,5 @@
+import React from "react"
+
 enum activityRoundType {
     singleRound = "singleRound",
     multiRound = "multiRound",
@@ -15,38 +17,42 @@ export const Results: React.FC<ResultsProps> = ({
     activityResults
 }) => {
     return (
-        <div>
-            <h6>{activityName}</h6>
-            <h1>Results</h1>
-            {activityResults.map(({order, results, round_title}) => (
-                <div key={order}>
-                    {activityRoundType === "singleRound" ? (
-                        <div>
-                            <p>{round_title}</p>
-                        </div>
-                    ) : null}
-                    {results.map(({
-                        feedback,
-                        isUserAnswerCorrect,
-                        is_correct,
-                        order,
-                        stimulus
-                    }) => (
-                        <div key={order}>
-                            <div>
-                                <span>Q{order}</span>
-                                <span>{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
+        <div className="box-narrow">
+            <div className="box-header text-center">
+                <h6 className="box-superscript">{activityName}</h6>
+                <h1 className="box-title">Results</h1>
+            </div>
+            <div className="box-list">
+                {activityResults.map(({order: roundOrder, results, round_title}) => (
+                    <React.Fragment key={roundOrder}>
+                        {activityRoundType === "multiRound" ? (
+                            <div className="box-list-item text-center uppercase font-bold">
+                                <p>{round_title}</p>
                             </div>
-                            {!isUserAnswerCorrect ? (
-                                <div>
-                                    "{stimulus}" {is_correct ? `is correct. There is no error.` : `should be "${feedback}"`}
+                        ) : null}
+                        {results.map(({
+                                          feedback,
+                                          isUserAnswerCorrect,
+                                          is_correct,
+                                          order: questionOrder,
+                                          stimulus
+                                      }) => (
+                            <div className="box-list-item" key={questionOrder}>
+                                <div className="flex justify-between uppercase">
+                                    <span>Q{questionOrder}</span>
+                                    <span className="font-bold">{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
                                 </div>
-                            ) : null}
-                        </div>
-                    ))}
-                </div>
-            ))}
-            <div>
+                                {!isUserAnswerCorrect ? (
+                                    <p className="text-sm mt-2">
+                                        "{stimulus}" {is_correct ? `is correct. There is no error.` : `should be "${feedback}"`}
+                                    </p>
+                                ) : null}
+                            </div>
+                        ))}
+                    </React.Fragment>
+                ))}
+            </div>
+            <div className="box-footer">
                 <a href="/">HOME</a>
             </div>
         </div>

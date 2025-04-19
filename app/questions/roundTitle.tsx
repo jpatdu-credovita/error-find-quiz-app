@@ -23,9 +23,11 @@ export const RoundTitle: React.FC<RoundTitleProps> = ({
     }, [displayDuration, proceedHandler])
 
     return (
-        <div>
-            <h6>{activityName}</h6>
-            <h1>{roundTitle}</h1>
+        <div className="box-wide">
+            <div className="box-header">
+                <h6 className="box-superscript">{activityName}</h6>
+                <h1 className="box-title uppercase">{roundTitle}</h1>
+            </div>
         </div>
     )
 }

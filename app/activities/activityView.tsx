@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
 import { RoundTitle } from "~/questions/roundTitle"
-import {Results} from "~/results/results"
+import { Results } from "~/results/results"
 
 export function ActivityView({ activity }) {
     const [currentQuestion, setCurrentQuestion] = useState(activity.questions[0].questions[0])
@@ -43,7 +43,6 @@ export function ActivityView({ activity }) {
             const isActivityComplete = latestActivityResults.length === activity.questions.length
             if (isActivityComplete) {
                 // Render results
-                console.log(latestActivityResults)
                 nextDisplayToRender = "results"
             } else {
                 // Render next round
@@ -76,6 +75,7 @@ export function ActivityView({ activity }) {
                     currentQuestion ? <TrueOrFalseQuestion
                         question={currentQuestion}
                         activityName={activity.activity_name}
+                        roundTitle={activity.roundType === "multiRound" ? currentRound.round_title : null}
                         handleAnswer={handleAnswer}
                     /> : null
                 )

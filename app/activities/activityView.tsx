@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { motion } from "motion/react"
+
 import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
 import { RoundTitle } from "~/questions/roundTitle"
 import { Results } from "~/results/results"
@@ -8,6 +10,7 @@ export function ActivityView({ activity }) {
     const [currentRound, setCurrentRound] = useState(activity.questions[0])
     const [currentRoundResults, setCurrentRoundResults] = useState([])
     const [activityResults, setActivityResults] = useState([])
+    const [clickCount, setClickCount] = useState(0)
 
     const initialDisplay: String = activity.roundType === "singleRound" ? "question" : "roundTitle"
     const [currentDisplay, setCurrentDisplay] = useState(initialDisplay)
@@ -15,6 +18,7 @@ export function ActivityView({ activity }) {
     const handleNewRound = () => {
         setCurrentQuestion(currentRound.questions[0])
         setCurrentDisplay("question")
+        setClickCount(clickCount + 1)
     }
 
     const handleAnswer = (event) => {
@@ -57,6 +61,7 @@ export function ActivityView({ activity }) {
         setCurrentRound(nextRoundToRender)
         setCurrentQuestion(nextQuestionToRender)
         setCurrentDisplay(nextDisplayToRender)
+        setClickCount(clickCount + 1)
     }
 
     const renderContent = () => {
@@ -88,5 +93,33 @@ export function ActivityView({ activity }) {
         }
     }
 
-    return renderContent()
+    const pageVariants = {
+        initial: {
+            opacity: 0,
+            x: '100vw',
+        },
+        animate: {
+            opacity: 1,
+            x: 0,
+            transition: { duration: 0.4, ease: "easeOut" }
+        },
+        exit: {
+            opacity: 0,
+            x: '-100vw',
+            transition: { duration: 0.3, ease: "easeIn" }
+        }
+    };
+
+    return (
+        <motion.div
+            key={clickCount}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="flex h-screen w-screen"
+        >
+            {renderContent()}
+        </motion.div>
+    )
 }

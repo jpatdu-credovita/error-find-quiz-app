@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   --color-dodger-blue: oklch(67.025% 0.17475 249.86);
@@ -26,19 +26,19 @@ body {
 }
 
 .box-wide, .box-narrow {
-  @apply m-auto bg-white border border-dodger-blue-200;
+  @apply m-auto bg-white border border-dodger-blue-200 flex flex-col justify-between;
 }
 
 .box-narrow {
-  @apply grow max-w-[230px];
+  @apply grow max-w-[280px];
 }
 
 .box-wide {
-  @apply grow max-w-[506px] min-h-[300px];
+  @apply grow max-w-[613px] min-h-[370px];
 }
 
 .box-header {
-  @apply p-10 min-h-[172px] flex flex-col justify-between;
+  @apply p-12 min-h-[210px] flex flex-col justify-between;
 }
 
 .box-superscript {
@@ -54,11 +54,11 @@ body {
 }
 
 .box-list {
-  @apply border-t border-b border-dodger-blue-150 divide-y max-h-[200px] overflow-y-scroll;
+  @apply border-t border-b border-dodger-blue-150 divide-y max-h-[250px] overflow-y-scroll;
 }
 
 .box-list-item {
-  @apply p-4 border-dodger-blue-150;
+  @apply px-8 py-5 border-dodger-blue-150 bg-dodger-blue-50;
 }
 
 .box-ribbon {

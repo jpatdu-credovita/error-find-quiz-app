@@ -46,8 +46,8 @@ export const Results: React.FC<ResultsProps> = ({
                                 {!isUserAnswerCorrect ? (
                                     <span className="text-sm mt-2">
                                         "<CustomMarkdown>{stimulus}</CustomMarkdown>" {
-                                            is_correct ? `is correct. There is no error.`
-                                                : `should be "${<CustomMarkdown>{feedback}</CustomMarkdown>}"`
+                                        is_correct ? (<span> is correct. There is no error.</span>)
+                                            : (<span> should be "<CustomMarkdown>{feedback}</CustomMarkdown>"</span>)
                                         }
                                     </span>
                                 ) : null}

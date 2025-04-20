@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
 
 import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
 import { RoundTitle } from "~/questions/roundTitle"
@@ -93,42 +92,5 @@ export function ActivityView({ activity }) {
         }
     }
 
-    const pageVariants = {
-        initial: {
-            opacity: 0,
-            x: '100vw',
-        },
-        animate: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.4, ease: "easeOut" }
-        },
-        exit: {
-            opacity: 0,
-            x: '-100vw',
-            transition: { duration: 0.3, ease: "easeIn" }
-        }
-    };
-
-    /*
-    return (
-        <AnimatePresence>
-            <motion.div
-                key={clickCount}
-                variants={pageVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="flex h-screen w-screen"
-            >
-                {renderContent()}
-            </motion.div>
-        </AnimatePresence>
-    )
-
-     */
-
-    return (
-        renderContent()
-    )
+    return renderContent()
 }

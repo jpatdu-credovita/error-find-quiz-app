@@ -1,6 +1,7 @@
 import React from "react"
 import {CustomMarkdown} from "~/utilityComponents/utils/customMarkdown"
 import {BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem, BoxFooter} from "~/uilib/box"
+import {AnimatedLink} from "~/utilityComponents/customElements/animatedLink";
 
 enum activityRoundType {
     singleRound = "singleRound",
@@ -51,7 +52,7 @@ export const Results: React.FC<ResultsProps> = ({
                 </BoxList>
             </BoxBody>
             <BoxFooter>
-                <a href="/">HOME</a>
+                <AnimatedLink linkTo="/">HOME</AnimatedLink>
             </BoxFooter>
         </BoxNarrow>
     )

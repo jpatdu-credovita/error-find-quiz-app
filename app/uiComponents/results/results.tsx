@@ -1,7 +1,7 @@
 import React from "react"
 import {CustomMarkdown} from "~/utilityComponents/utils/customMarkdown"
 import {BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem, BoxFooter} from "~/uilib/box"
-import {AnimatedLink} from "~/utilityComponents/customElements/animatedLink";
+import {AnimatedLink} from "~/uiComponents/customElements/animatedLink";
 
 enum activityRoundType {
     singleRound = "singleRound",

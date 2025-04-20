@@ -1,5 +1,5 @@
 import { BoxBody, BoxHeader, BoxList, BoxListItem, BoxNarrow, BoxView } from "~/uilib/box";
-import {AnimatedLink} from "~/utilityComponents/customElements/animatedLink";
+import {AnimatedLink} from "~/uiComponents/customElements/animatedLink";
 
 export function IndexView( {quizData} ) {
     return (

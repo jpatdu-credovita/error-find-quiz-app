@@ -42,7 +42,7 @@ body {
 }
 
 .box-header {
-  @apply p-12 min-h-[210px] flex flex-col justify-between;
+  @apply row-start-1 p-12 min-h-[210px] flex flex-col justify-between;
 }
 
 .box-superscript {
@@ -54,7 +54,7 @@ body {
 }
 
 .box-body {
-  @apply grow;
+  @apply row-start-2
 }
 
 .box-ribbon {
@@ -70,7 +70,7 @@ body {
 }
 
 .box-footer {
-  @apply py-8 uppercase font-bold flex justify-around;
+  @apply row-start-3 py-8 uppercase font-bold flex justify-around;
 }
 
 button {

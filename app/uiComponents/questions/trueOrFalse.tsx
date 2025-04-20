@@ -1,5 +1,5 @@
-import { CustomMarkdown } from "~/utilityComponents/customMarkdown";
-import { BoxWide, BoxHeader, BoxBody, BoxRibbon, BoxFooter } from "~/components/box"
+import { CustomMarkdown } from "~/utilityComponents/utils/customMarkdown";
+import { BoxWide, BoxHeader, BoxBody, BoxRibbon, BoxFooter } from "~/uilib/box"
 
 interface trueOrFalseQuestionProps {
     question: any,

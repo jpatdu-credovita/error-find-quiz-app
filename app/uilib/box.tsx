@@ -1,5 +1,5 @@
 import React from 'react'
-import { SlideInOut } from '~/utilityComponents/boxSlideInOutWrapper'
+import { SlideInOut } from '~/utilityComponents/transitions/boxSlideInOutWrapper'
 
 function generateClassName(baseClass: string, additionalClasses?: string): string {
     return [baseClass, additionalClasses].filter(Boolean).join(' ')

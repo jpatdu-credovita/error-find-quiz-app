@@ -1,6 +1,6 @@
 import type { Route } from "./+types/activity.$activityNumber"
-import { getQuizData } from "~/utils/fetchQuizService"
-import { ActivityView } from "~/activities/activityView"
+import { getQuizData } from "~/jsutils/fetchQuizService"
+import { ActivityView } from "~/views/activityView"
 
 export async function loader({ params }: Route.LoaderArgs) {
     const quizData = await getQuizData()

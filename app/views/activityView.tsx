@@ -1,9 +1,10 @@
-import { useState } from "react"
+import React, { useState } from "react"
 
-import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
-import { RoundTitle } from "~/questions/roundTitle"
-import { Results } from "~/results/results"
-import { BoxView } from "~/components/box"
+import { TrueOrFalseQuestion } from "~/uiComponents/questions/trueOrFalse"
+import { RoundTitle } from "~/uiComponents/questions/roundTitle"
+import { Results } from "~/uiComponents/results/results"
+import { GenericError } from "~/uiComponents/errors/genericError";
+import { BoxView } from "~/uilib/box"
 
 export function ActivityView({ activity }) {
     const [currentQuestion, setCurrentQuestion] = useState(activity.questions[0].questions[0])
@@ -64,10 +65,9 @@ export function ActivityView({ activity }) {
         setClickCount(clickCount + 1)
     }
 
-    const renderContent = () => {
+    const renderContent: () => (React.ReactElement) = () => {
         switch (currentDisplay) {
             case "roundTitle":
-
                 return (
                     <RoundTitle
                         roundTitle={currentRound.round_title}
@@ -82,7 +82,7 @@ export function ActivityView({ activity }) {
                         activityName={activity.activity_name}
                         roundTitle={activity.roundType === "multiRound" ? currentRound.round_title : null}
                         handleAnswer={handleAnswer}
-                    /> : null
+                    /> : <GenericError />
                 )
             case "results":
                 return (<Results
@@ -90,6 +90,8 @@ export function ActivityView({ activity }) {
                     activityRoundType={activity.roundType}
                     activityResults={activityResults}
                 />)
+            default:
+                return (<GenericError/>)
         }
     }
 

@@ -1,5 +1,5 @@
-import {useEffect} from "react";
-import { BoxWide, BoxHeader } from "~/components/box";
+import { useEffect } from "react";
+import { BoxWide, BoxHeader } from "~/uilib/box";
 
 interface RoundTitleProps {
     roundTitle: string

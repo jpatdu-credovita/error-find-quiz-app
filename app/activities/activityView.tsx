@@ -110,6 +110,7 @@ export function ActivityView({ activity }) {
         }
     };
 
+    /*
     return (
         <AnimatePresence>
             <motion.div
@@ -123,5 +124,11 @@ export function ActivityView({ activity }) {
                 {renderContent()}
             </motion.div>
         </AnimatePresence>
+    )
+
+     */
+
+    return (
+        renderContent()
     )
 }

@@ -1,5 +1,6 @@
 import React from "react"
-import {CustomMarkdown} from "~/utilityComponents/customMarkdown";
+import {CustomMarkdown} from "~/utilityComponents/customMarkdown"
+import {BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem, BoxFooter} from "~/components/box"
 
 enum activityRoundType {
     singleRound = "singleRound",
@@ -18,47 +19,40 @@ export const Results: React.FC<ResultsProps> = ({
     activityResults
 }) => {
     return (
-        <div className="box-narrow">
-            <div className="box-header text-center">
-                <h6 className="box-superscript">{activityName}</h6>
-                <h1 className="box-title">Results</h1>
-            </div>
-            <div className="box-list">
-                {activityResults.map(({order: roundOrder, results, round_title}) => (
-                    <React.Fragment key={roundOrder}>
-                        {activityRoundType === "multiRound" ? (
-                            <div className="box-list-item text-center uppercase font-bold">
-                                <p>{round_title}</p>
-                            </div>
-                        ) : null}
-                        {results.map(({
-                                          feedback,
-                                          isUserAnswerCorrect,
-                                          is_correct,
-                                          order: questionOrder,
-                                          stimulus
-                                      }) => (
-                            <div className="box-list-item" key={questionOrder}>
-                                <div className="flex justify-between uppercase">
-                                    <span>Q{questionOrder}</span>
-                                    <span className="font-bold">{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
-                                </div>
-                                {!isUserAnswerCorrect ? (
-                                    <span className="text-sm mt-2">
-                                        "<CustomMarkdown>{stimulus}</CustomMarkdown>" {
-                                        is_correct ? (<span> is correct. There is no error.</span>)
-                                            : (<span> should be "<CustomMarkdown>{feedback}</CustomMarkdown>"</span>)
-                                        }
-                                    </span>
-                                ) : null}
-                            </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-            </div>
-            <div className="box-footer">
+        <BoxNarrow boxKey="result">
+            <BoxHeader superscript={activityName} title="Results" center={true} />
+            <BoxBody>
+                <BoxList>
+                    {activityResults.map(({order: roundOrder, results, round_title}) => (
+                        <React.Fragment key={roundOrder}>
+                            {activityRoundType === "multiRound" ? (
+                                <BoxListItem key={roundOrder} className="text-center uppercase font-bold">
+                                    <p>{round_title}</p>
+                                </BoxListItem>
+                            ) : null}
+                            {results.map(({ feedback, isUserAnswerCorrect, is_correct, order: questionOrder, stimulus}) => (
+                                <BoxListItem key={questionOrder}>
+                                    <div className="flex justify-between uppercase">
+                                        <span>Q{questionOrder}</span>
+                                        <span className="font-bold">{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
+                                    </div>
+                                    {!isUserAnswerCorrect ? (
+                                        <span className="text-sm mt-2">
+                                            "<CustomMarkdown>{stimulus}</CustomMarkdown>" {
+                                            is_correct ? (<span> is correct. There is no error.</span>)
+                                                : (<span> should be "<CustomMarkdown>{feedback}</CustomMarkdown>"</span>)
+                                            }
+                                        </span>
+                                    ) : null}
+                                </BoxListItem>
+                            ))}
+                        </React.Fragment>
+                    ))}
+                </BoxList>
+            </BoxBody>
+            <BoxFooter>
                 <a href="/">HOME</a>
-            </div>
-        </div>
+            </BoxFooter>
+        </BoxNarrow>
     )
 }

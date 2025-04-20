@@ -26,7 +26,7 @@ body {
 }
 
 .box-wide, .box-narrow {
-  @apply m-auto bg-white border border-dodger-blue-200 flex flex-col justify-between;
+  @apply m-auto bg-white border border-dodger-blue-200 grid grid-rows-[auto_1fr_auto];
 }
 
 .box-narrow {
@@ -35,6 +35,10 @@ body {
 
 .box-wide {
   @apply grow max-w-[613px] min-h-[370px];
+}
+
+.box-header, .box-footer {
+  @apply flex-none
 }
 
 .box-header {
@@ -49,8 +53,12 @@ body {
   @apply font-bold text-4xl;
 }
 
+.box-body {
+  @apply grow;
+}
+
 .box-ribbon {
-  @apply p-4 bg-dodger-blue-50 border-y border-dodger-blue-200;
+  @apply px-10 py-4 h-full flex items-center bg-dodger-blue-50 border-y border-dodger-blue-200;
 }
 
 .box-list {
@@ -59,10 +67,6 @@ body {
 
 .box-list-item {
   @apply px-8 py-5 border-dodger-blue-150 bg-dodger-blue-50;
-}
-
-.box-ribbon {
-  @apply px-10 py-4;
 }
 
 .box-footer {

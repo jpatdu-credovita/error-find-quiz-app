@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import { BoxWide, BoxHeader } from "~/components/box";
 
 interface RoundTitleProps {
     roundTitle: string
@@ -23,11 +24,8 @@ export const RoundTitle: React.FC<RoundTitleProps> = ({
     }, [displayDuration, proceedHandler])
 
     return (
-        <div className="box-wide">
-            <div className="box-header">
-                <h6 className="box-superscript">{activityName}</h6>
-                <h1 className="box-title uppercase">{roundTitle}</h1>
-            </div>
-        </div>
+        <BoxWide boxKey={roundTitle}>
+            <BoxHeader superscript={activityName} title={roundTitle.toUpperCase()} />
+        </BoxWide>
     )
 }

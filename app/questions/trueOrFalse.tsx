@@ -1,5 +1,5 @@
 import { CustomMarkdown } from "~/utilityComponents/customMarkdown";
-import BoxWide from "~/components/boxWide"
+import { BoxWide, BoxHeader, BoxBody, BoxRibbon, BoxFooter } from "~/components/box"
 
 interface trueOrFalseQuestionProps {
     question: any,
@@ -28,19 +28,19 @@ export const TrueOrFalseQuestion: React.FC<trueOrFalseQuestionProps> = ({
     }
     return(
         <BoxWide boxKey={order}>
-            <div className="box-wide">
-                <div className="box-header">
-                    <h6 className="box-superscript">{activityName}{roundTitle ? ` / ${roundTitle}` : ""}</h6>
-                    <h1 className="box-title">Q{order}.</h1>
-                </div>
-                <div className="box-ribbon">
+            <BoxHeader
+                superscript={`${activityName}${roundTitle ? ` / ${roundTitle}` : ""}`}
+                title={`Q${order}.`}
+            />
+            <BoxBody>
+                <BoxRibbon>
                     <p><CustomMarkdown>{stimulus}</CustomMarkdown></p>
-                </div>
-                <div className="box-footer">
-                    <button onClick={() => handleInput(true)}>Correct</button>
-                    <button onClick={() => handleInput(false)}>Incorrect</button>
-                </div>
-            </div>
+                </BoxRibbon>
+            </BoxBody>
+            <BoxFooter>
+                <button onClick={() => handleInput(true)}>Correct</button>
+                <button onClick={() => handleInput(false)}>Incorrect</button>
+            </BoxFooter>
         </BoxWide>
     )
 }

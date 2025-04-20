@@ -1,6 +1,6 @@
 import type { Route } from "./+types/_index";
 import { getQuizData } from "~/utils/fetchQuizService"
-import { BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem } from "~/components/box"
+import { BoxView, BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem } from "~/components/box"
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -19,17 +19,19 @@ export default function Index({
                               }: Route.ComponentProps) {
     const { quizData } = loaderData
     return (
-        <BoxNarrow boxKey="index">
-            <BoxHeader superscript="CAE" title={quizData.name} center={true} />
-            <BoxBody>
-                <BoxList>
-                    {quizData.activities.map(({activity_name, order, idx}) => (
-                        <BoxListItem key={order} className="text-center uppercase">
-                            <a href={`/activity/${order}`}>{activity_name}</a>
-                        </BoxListItem>
-                    ))}
-                </BoxList>
-            </BoxBody>
-        </BoxNarrow>
+        <BoxView viewKey="index">
+            <BoxNarrow>
+                <BoxHeader superscript="CAE" title={quizData.name} center={true} />
+                <BoxBody>
+                    <BoxList>
+                        {quizData.activities.map(({activity_name, order, idx}) => (
+                            <BoxListItem key={order} className="text-center uppercase">
+                                <a href={`/activity/${order}`}>{activity_name}</a>
+                            </BoxListItem>
+                        ))}
+                    </BoxList>
+                </BoxBody>
+            </BoxNarrow>
+        </BoxView>
     )
 }

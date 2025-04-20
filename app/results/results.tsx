@@ -19,7 +19,7 @@ export const Results: React.FC<ResultsProps> = ({
     activityResults
 }) => {
     return (
-        <BoxNarrow boxKey="result">
+        <BoxNarrow>
             <BoxHeader superscript={activityName} title="Results" center={true} />
             <BoxBody>
                 <BoxList>

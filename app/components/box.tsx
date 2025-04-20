@@ -5,44 +5,47 @@ function generateClassName(baseClass: string, additionalClasses?: string): strin
     return [baseClass, additionalClasses].filter(Boolean).join(' ')
 }
 
+interface BoxViewProps {
+    children: React.ReactElement,
+    viewKey: ( string | number )
+}
+
+export const BoxView: React.FC<BoxViewProps> = ({children, viewKey}) => (
+    <SlideInOut animateKey={viewKey}>
+        {children}
+    </SlideInOut>
+)
+
 interface BaseBoxProps {
     children?: React.ReactNode
     className?: string
 }
 
-interface BoxProps extends BaseBoxProps {
-    boxKey: string | number
-}
+interface BoxProps extends BaseBoxProps {}
 
 export const BoxWide: React.FC<BoxProps> = ({
                                                 children,
-                                                boxKey,
                                                 className,
                                                 ...rest
                                             }) => {
     const combinedClassName = generateClassName("box-wide", className)
     return (
-        <SlideInOut animateKey={boxKey}>
             <div className={combinedClassName} {...rest}>
                 {children}
             </div>
-        </SlideInOut>
     )
 }
 
 export const BoxNarrow: React.FC<BoxProps> = ({
                                                   children,
-                                                  boxKey,
                                                   className,
                                                   ...rest
                                               }) => {
     const combinedClassName = generateClassName("box-narrow", className)
     return (
-        <SlideInOut animateKey={boxKey}>
             <div className={combinedClassName} {...rest}>
                 {children}
             </div>
-        </SlideInOut>
     )
 }
 

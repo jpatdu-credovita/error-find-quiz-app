@@ -3,6 +3,7 @@ import { useState } from "react"
 import { TrueOrFalseQuestion } from "~/questions/trueOrFalse"
 import { RoundTitle } from "~/questions/roundTitle"
 import { Results } from "~/results/results"
+import { BoxView } from "~/components/box"
 
 export function ActivityView({ activity }) {
     const [currentQuestion, setCurrentQuestion] = useState(activity.questions[0].questions[0])
@@ -92,5 +93,9 @@ export function ActivityView({ activity }) {
         }
     }
 
-    return renderContent()
+    return (
+        <BoxView viewKey={clickCount}>
+            {renderContent()}
+        </BoxView>
+    )
 }

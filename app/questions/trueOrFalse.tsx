@@ -27,7 +27,7 @@ export const TrueOrFalseQuestion: React.FC<trueOrFalseQuestionProps> = ({
         return handleAnswer(event)
     }
     return(
-        <BoxWide boxKey={order}>
+        <BoxWide>
             <BoxHeader
                 superscript={`${activityName}${roundTitle ? ` / ${roundTitle}` : ""}`}
                 title={`Q${order}.`}

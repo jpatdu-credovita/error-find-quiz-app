@@ -24,7 +24,7 @@ export const RoundTitle: React.FC<RoundTitleProps> = ({
     }, [displayDuration, proceedHandler])
 
     return (
-        <BoxWide boxKey={roundTitle}>
+        <BoxWide>
             <BoxHeader superscript={activityName} title={roundTitle.toUpperCase()} />
         </BoxWide>
     )

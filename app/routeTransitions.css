@@ -1,0 +1,38 @@
+/* Route Transition: Exit Fade + Slide Left / Enter Slide Right */
+@keyframes slide-out-left-fade {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+}
+
+@keyframes slide-in-right-fade {
+    from {
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+::view-transition-old(root) {
+    animation: none;
+    animation-name: slide-out-left-fade;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+}
+
+::view-transition-new(root) {
+    animation: none;
+    animation-name: slide-in-right-fade;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}

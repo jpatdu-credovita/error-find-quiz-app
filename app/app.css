@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./routeTransitions.css";
 
 @theme {
   --font-sans: "Arimo", ui-sans-serif, system-ui, sans-serif,

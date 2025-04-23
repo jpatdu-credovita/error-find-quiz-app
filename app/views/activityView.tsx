@@ -1,5 +1,12 @@
 import React, {useState} from "react"
-import type {TransformedActivity, Question, QuestionResult, RoundResult, QuestionType} from "~/quizTypes";
+import type {
+    TransformedActivity,
+    Question,
+    QuestionResult,
+    RoundResult,
+    QuestionType,
+    TrueFalseQuestion
+} from "~/quizTypes";
 
 import { TrueOrFalseQuestion } from "~/uiComponents/questions/trueOrFalse"
 import { RoundTitle } from "~/uiComponents/questions/roundTitle"
@@ -96,7 +103,7 @@ export function ActivityView({ activity }: { activity: TransformedActivity }) {
         switch (questionType) {
             case "TrueFalse":
                 return (<TrueOrFalseQuestion
-                    question={currentQuestion}
+                    question={currentQuestion as TrueFalseQuestion}
                     activityName={activity.activity_name}
                     roundTitle={currentRound.round_title}
                     handleAnswer={handleAnswer}

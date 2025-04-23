@@ -1,11 +1,12 @@
 import type { Route } from "./+types/activity.$activityNumber"
 import { getQuizData } from "~/jsutils/fetchQuizService"
 import { ActivityView } from "~/views/activityView"
+import type {Activity, Round, Question, TransformedActivity} from "~/quizTypes";
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params }: Route.LoaderArgs): Promise<{activity: TransformedActivity}> {
     const quizData = await getQuizData()
     const { activities } = quizData
-    
+
     const selectedActivityNumber: Number = parseInt(params.activityNumber)
     const selectedActivity = activities.find(
         (activity) => activity.order === selectedActivityNumber
@@ -14,22 +15,42 @@ export async function loader({ params }: Route.LoaderArgs) {
     if (!selectedActivity) {
         throw new Response("Activity not found", { status: 404 })
     }
-    
-    const currentActivity = {...selectedActivity}
-    currentActivity.question = [...selectedActivity.questions].sort(
+
+    let currentActivity: TransformedActivity
+    const firstQuestion = selectedActivity.questions?.[0]
+    const isMultiRound: boolean = firstQuestion ? 'round_title' in firstQuestion : false
+    const sortedQuestionsRounds = [...selectedActivity.questions].sort(
         (prev,next) => prev.order - next.order
     )
-    const isMultiRound: Boolean = currentActivity.questions[0].round_title ? true : false
 
     if (isMultiRound) {
-        currentActivity.roundType = "multiRound"
+        const rounds: Round[] = sortedQuestionsRounds as Round[]
+        currentActivity = {
+            ...selectedActivity,
+            roundType: "multiRound",
+            questions: rounds.map((round: Round) => {
+                const transformedQuestions: Question[] = round.questions.map((q: Question) => {
+                    q.questionType = "TrueFalse"
+                    return q
+                })
+                return {...round, questions: transformedQuestions }
+            }) as Round[] // Since questionType is not returned by the server, manually set questionType and assume all are True/False questions
+        }
     } else {
-        currentActivity.roundType = "singleRound"
-        const currentActivityQuestions = structuredClone(currentActivity.questions)
-        currentActivity.questions = [{
+        let activityQuestions = sortedQuestionsRounds as Question[]
+        activityQuestions = activityQuestions.map((q: Question) => {
+            q.questionType = "TrueFalse"
+            return q
+        })
+        const mockRound: Round[] = [{
             order: 1,
-            questions: currentActivityQuestions
+            questions: activityQuestions
         }]
+        currentActivity = {
+            ...selectedActivity,
+            roundType: "singleRound",
+            questions: mockRound as Round[]
+        }
     }
 
     return { activity: currentActivity }

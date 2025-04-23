@@ -1,8 +1,10 @@
 import { CustomMarkdown } from "~/utilityComponents/utils/customMarkdown";
 import { BoxWide, BoxHeader, BoxBody, BoxRibbon, BoxFooter } from "~/uilib/box"
+import type {TrueFalseQuestion} from "~/quizTypes";
+import React from "react";
 
 interface trueOrFalseQuestionProps {
-    question: any,
+    question: TrueFalseQuestion,
     activityName: string,
     roundTitle?: string,
     roundNumber?: number,

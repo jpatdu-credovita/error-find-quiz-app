@@ -1,16 +1,13 @@
 import React from "react"
-import {CustomMarkdown} from "~/utilityComponents/utils/customMarkdown"
+import type {ActivityRoundType, RoundResult, TrueFalseQuestionResult} from "~/quizTypes";
+
 import {BoxNarrow, BoxHeader, BoxBody, BoxList, BoxListItem, BoxFooter} from "~/uilib/box"
 import {AnimatedLink} from "~/uiComponents/customElements/animatedLink";
-
-enum activityRoundType {
-    singleRound = "singleRound",
-    multiRound = "multiRound",
-}
+import {TrueFalseQuestionResultItem} from "~/uiComponents/results/trueFalseQuestionResult";
 
 interface ResultsProps {
     activityName: string,
-    activityRoundType: activityRoundType,
+    activityRoundType: ActivityRoundType,
     activityResults: any
 }
 
@@ -24,29 +21,20 @@ export const Results: React.FC<ResultsProps> = ({
             <BoxHeader superscript={activityName} title="Results" center={true} />
             <BoxBody>
                 <BoxList>
-                    {activityResults.map(({order: roundOrder, results, round_title}) => (
+                    {activityResults.map((
+                        {order: roundOrder, results, round_title}: RoundResult
+                    ) => (
                         <React.Fragment key={roundOrder}>
                             {activityRoundType === "multiRound" ? (
                                 <BoxListItem key={roundOrder} className="text-center uppercase font-bold">
                                     <p>{round_title}</p>
                                 </BoxListItem>
                             ) : null}
-                            {results.map(({ feedback, isUserAnswerCorrect, is_correct, order: questionOrder, stimulus}) => (
-                                <BoxListItem key={questionOrder}>
-                                    <div className="flex justify-between uppercase">
-                                        <span>Q{questionOrder}</span>
-                                        <span className="font-bold">{isUserAnswerCorrect ? 'CORRECT' : is_correct.toString()}</span>
-                                    </div>
-                                    {!isUserAnswerCorrect ? (
-                                        <span className="text-sm mt-2">
-                                            "<CustomMarkdown>{stimulus}</CustomMarkdown>" {
-                                            is_correct ? (<span> is correct. There is no error.</span>)
-                                                : (<span> should be "<CustomMarkdown>{feedback}</CustomMarkdown>"</span>)
-                                            }
-                                        </span>
-                                    ) : null}
-                                </BoxListItem>
-                            ))}
+                            {results.map((result) => {
+                                if (result.questionType === "TrueFalse") {
+                                    return (<TrueFalseQuestionResultItem key={result.order} result={result as TrueFalseQuestionResult} />)
+                                }
+                            })}
                         </React.Fragment>
                     ))}
                 </BoxList>

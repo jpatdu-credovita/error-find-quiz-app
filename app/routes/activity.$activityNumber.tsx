@@ -3,6 +3,13 @@ import { getQuizData } from "~/jsutils/fetchQuizService"
 import { ActivityView } from "~/views/activityView"
 import type {Activity, Round, Question, TransformedActivity} from "~/quizTypes";
 
+export function meta({ data }: Route.MetaArgs) {
+    const { activity } = data
+    return [
+        { title: activity.activity_name },
+    ]
+}
+
 export async function loader({ params }: Route.LoaderArgs): Promise<{activity: TransformedActivity}> {
     const quizData = await getQuizData()
     const { activities } = quizData

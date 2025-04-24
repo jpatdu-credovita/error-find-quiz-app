@@ -2,10 +2,11 @@ import type { Route } from "./+types/_index";
 import { getQuizData } from "~/jsutils/fetchQuizService"
 import { IndexView } from "~/views/indexView"
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ data }: Route.MetaArgs) {
+    const { quizData } = data
     return [
-        { title: "New React Router App" },
-        { name: "description", content: "Welcome to React Router!" },
+        { title: quizData.name },
+        { name: "description", content: quizData.heading },
     ]
 }
 

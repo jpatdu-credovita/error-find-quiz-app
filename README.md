@@ -2,6 +2,8 @@
 
 A React Router application for rendering quizzes
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjpatdu-credovita%2Ferror-find-quiz-app)
+
 ## Stack
 
 * [React Router v7](https://reactrouter.com/)
@@ -145,7 +147,9 @@ The application will be available at `http://localhost:5173`.
 
 ## Build and Deploy
 
-Create a production build:
+This app uses [Vercel Preset](https://vercel.com/docs/frameworks/react-router#vercel-react-router-preset) to enable deployments to Vercel.
+
+To manually create a production build:
 
 ```bash
 npm run build
